@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new patient</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div style="width:80%; margin:auto;">
+        <div class="col-md-offset-2">
+            <h2>Create new patient</h2>
+        </div>
+        <form class="form-horizontal" th:object="${patient}" method="post">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">First name:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{firstname}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Last name:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{lastname}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Patronymic:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{patronymic}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Birth Date:</label>
+                <div class="col-sm-8">
+                    <input required type="date" class="form-control" th:field="*{birthDate}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Phone:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{phone}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Doctor:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" disabled th:value="${doctor.firstname} + ' ' + ${doctor.lastname}" type="text"/>
+                </div>
+            </div>
+            <div class="col-sm-offset-2 col-sm-8">
+                <input class="btn btn-primary" type="submit" value="Create"/>
+                <input class="btn btn" type="reset" value="Clear"/>
+                <a class="btn btn-primary" th:href="@{|/doctor/${doctor.id}|}" role="button">Back</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

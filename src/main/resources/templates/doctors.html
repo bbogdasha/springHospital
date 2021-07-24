@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List of doctors</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div style="width:80%; margin:auto;">
+        <h2>List of Doctors</h2><br>
+        <form th:action="@{/doctor/create}" method="get">
+            <div align="right">
+                <input class="btn btn-primary" type="submit" value="Create new Doctor">
+            </div>
+        </form>
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Id</th>
+                <th>Full name</th>
+                <th>Position</th>
+                <th>Birth date</th>
+                <th>Phone number</th>
+                <th colspan="2">Operations</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="doctor, iStat: ${doctors}">
+                <th th:text="${iStat.index + 1}"></th>
+                <td th:text="${doctor.id}"></td>
+                <td>
+                    <a th:href="@{|/doctor/${doctor.id}|}" th:text="${doctor.firstname + ' ' + doctor.lastname + ' ' + doctor.patronymic}"></a>
+                </td>
+                <td th:text="${doctor.position}"></td>
+                <td th:text="${doctor.birthDate}"></td>
+                <td th:text="${doctor.phone}"></td>
+
+                <td>
+                    <a th:href="@{|/doctor/${doctor.id}/update|}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{|/doctor/${doctor.id}/delete|}">Remove</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

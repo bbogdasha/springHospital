@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div style="width:80%; margin:auto;">
+        <h2>Information about doctor</h2><br>
+        <table class="table table-striped">
+            <tr>
+                <td>Id:</td>
+                <td>
+                    <b th:text="${doctor.id}"></b>
+                </td>
+            </tr>
+            <tr>
+                <td>Full name:</td>
+                <td>
+                    <b th:text="${doctor.firstname + ' ' + doctor.lastname + ' ' + doctor.patronymic}"></b>
+                </td>
+            </tr>
+            <tr>
+                <td>Position:</td>
+                <td>
+                    <b th:text="${doctor.position}"></b>
+                </td>
+            </tr>
+            <tr>
+                <td>Birth Day:</td>
+                <td>
+                    <b th:text="${doctor.birthDate}"></b>
+                </td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>
+                    <b th:text="${doctor.phone}"></b>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <h2>Patients of doctor</h2>
+        <form th:action="@{|/patient/create/doctor/${doctor.id}|}" method="get">
+            <div align="right">
+                <input class="btn btn-primary" type="submit" value="Create new patient">
+            </div>
+        </form>
+        <br>
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <th>Id</th>
+                <th>Full name</th>
+                <th>Birth date</th>
+                <th>Phone number</th>
+                <th colspan="2">Operations</th>
+            </tr>
+            <tr th:each="patient, iStat: ${patients}">
+                <td th:text="${iStat.index + 1}"></td>
+                <td th:text="${patient.id}"></td>
+                <td th:text="${patient.firstname + ' ' + patient.lastname + ' ' + patient.patronymic}"></td>
+                <td th:text="${patient.birthDate}"></td>
+                <td th:text="${patient.phone}"></td>
+                <td>
+                    <a th:href="@{|/patient/${patient.id}/update/doctor/${doctor.id}|}">Edit</a>
+                </td>
+                <td>
+                    <a th:href="@{|/patient/${patient.id}/delete/doctor/${doctor.id}|}">Remove</a>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <br>
+        <a class="btn btn-primary" th:href="@{|/|}" role="button">Back</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create new Doctor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div style="width:80%; margin:auto;">
+        <div class="col-md-offset-2">
+            <h2>Create new Doctor</h2>
+        </div>
+        <form class="form-horizontal" th:action="@{/doctor/create}" th:object="${doctor}" method="post">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">First name:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{firstname}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Last name:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{lastname}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Patronymic:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{patronymic}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Position:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{position}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Birth Date:</label>
+                <div class="col-sm-8">
+                    <input required type="date" class="form-control" th:field="*{birthDate}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Phone:</label>
+                <div class="col-sm-8">
+                    <input required type="text" class="form-control" th:field="*{phone}"/>
+                </div>
+            </div>
+            <div class="col-sm-offset-2 col-sm-8">
+                <input type="submit" class="btn btn-primary" value="Create"/>
+                <input type="reset" class="btn btn" value="Clear"/>
+                <a class="btn btn-primary" th:href="@{|/|}" role="button">Back</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
