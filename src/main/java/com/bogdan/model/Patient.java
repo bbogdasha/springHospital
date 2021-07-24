@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -27,6 +26,4 @@ public class Patient {
     private Long doctorId;
 
     private String phone;
-
-    private List<Patient> patients;
 }
